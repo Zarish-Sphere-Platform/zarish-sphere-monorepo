@@ -23,10 +23,13 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install Dependencies
+      - name: Install Dependencies & Setup Monorepo
+        # The 'npm install' command will now respect the 'workspaces' field 
+        # in the root package.json and install all dependencies for all apps/packages.
         run: |
-          npm init -y
-          npm install mkdocs-material markdownlint-cli
+          npm install 
+          # Install Python Dependencies for Docs separately
+          pip install mkdocs-material
 
       - name: 🔍 Run Linters & Validation
         run: |
