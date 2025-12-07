@@ -24,8 +24,7 @@ jobs:
           node-version: '18'
 
       - name: Install Dependencies & Setup Monorepo
-        # The 'npm install' command will now respect the 'workspaces' field 
-        # in the root package.json and install all dependencies for all apps/packages.
+        # 'npm install' at the root resolves all dependencies and workspace links
         run: |
           npm install 
           # Install Python Dependencies for Docs separately
@@ -50,7 +49,7 @@ jobs:
           file_pattern: "MASTER_*.md **/README.md"
 
       - name: 🏗️ Build Documentation Site
-        run: pip install mkdocs-material && mkdocs build
+        run: mkdocs build
 
       - name: 🚀 Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
