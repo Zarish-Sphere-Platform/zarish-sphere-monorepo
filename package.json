@@ -1,0 +1,25 @@
+{
+  "name": "zarish-sphere-monorepo",
+  "version": "1.0.0",
+  "description": "Single Source of Truth (SSOT) for the Zarish Sphere PaaS.",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "index": "node scripts/generate-index.js",
+    "todo": "node scripts/sync-todos.js",
+    "docs:build": "pip install mkdocs-material && mkdocs build",
+    "start": "mkdocs serve"
+  },
+  "keywords": [
+    "zarish",
+    "paas",
+    "monorepo",
+    "ssot"
+  ],
+  "author": "Zarish Sphere",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "markdownlint-cli": "^0.39.0"
+  }
+}
