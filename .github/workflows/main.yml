@@ -23,11 +23,15 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install Dependencies & Setup Monorepo
-        # 'npm install' at the root resolves all dependencies and workspace links
+      - name: Install Dependencies & Setup Monorepo (Using Yarn)
         run: |
-          npm install 
-          # Install Python Dependencies for Docs separately
+          # 1. Install Yarn globally to handle monorepo workspaces reliably
+          npm install -g yarn
+          
+          # 2. Use Yarn to install all root dependencies and link all workspaces
+          yarn install
+          
+          # 3. Install Python Dependencies for Docs separately
           pip install mkdocs-material
 
       - name: 🔍 Run Linters & Validation
