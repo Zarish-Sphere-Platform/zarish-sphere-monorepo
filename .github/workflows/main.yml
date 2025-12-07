@@ -1,0 +1,58 @@
+name: Zarish Sphere SSOT Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  validate-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: |
+          npm init -y
+          npm install mkdocs-material markdownlint-cli
+
+      - name: 🔍 Run Linters & Validation
+        run: |
+          # Example: Validate Markdown files
+          npx markdownlint '**/*.md' --ignore node_modules
+          # Here we would add Schema validation scripts
+
+      - name: ⚙️ Auto-Generate Indexes & TODOs
+        run: |
+          node scripts/generate-index.js
+          node scripts/sync-todos.js
+
+      - name: 📝 Commit Auto-Generated Files (PR Mode)
+        # Only runs if the scripts detected changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "🤖 Auto-update Indexes, TODOs, and READMEs"
+          file_pattern: "MASTER_*.md **/README.md"
+
+      - name: 🏗️ Build Documentation Site
+        run: pip install mkdocs-material && mkdocs build
+
+      - name: 🚀 Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          force_orphan: true # Keeps only one version history for docs to save space
