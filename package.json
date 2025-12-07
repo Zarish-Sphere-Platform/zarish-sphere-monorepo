@@ -8,7 +8,6 @@
     "packages/*"
   ],
   "main": "index.js",
-  "private": true,
   "scripts": {
     "index": "node scripts/generate-index.js",
     "todo": "node scripts/sync-todos.js",
