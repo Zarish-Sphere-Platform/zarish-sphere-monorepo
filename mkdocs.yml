@@ -1,0 +1,22 @@
+site_name: Zarish Sphere Platform
+site_url: https://zarish-sphere-platform.github.io/zarish-sphere-monorepo/
+repo_url: https://github.com/Zarish-Sphere-Platform/zarish-sphere-monorepo
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - search.suggest
+    - search.highlight
+  palette:
+    - scheme: default
+      primary: teal
+      accent: purple
+plugins:
+  - search
+nav:
+  - Home: index.md
+  - Master Index: MASTER_INDEX.md
+  - Roadmap & TODOs: MASTER_TODO.md
+  - Architecture: docs/architecture/README.md
+  - Modules: packages/README.md
