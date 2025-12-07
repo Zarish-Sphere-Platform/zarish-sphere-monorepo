@@ -2,6 +2,11 @@
   "name": "zarish-sphere-monorepo",
   "version": "1.0.0",
   "description": "Single Source of Truth (SSOT) for the Zarish Sphere PaaS.",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "main": "index.js",
   "private": true,
   "scripts": {
