@@ -1,0 +1,380 @@
+.gui-builder-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f5f5f5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.gui-builder-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.header-title h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.header-title p {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.gui-builder-content {
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+/* Component Palette */
+.component-palette {
+  width: 200px;
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.component-palette h3 {
+  margin: 0 0 1rem 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.palette-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.palette-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  color: #333;
+  text-align: left;
+}
+
+.palette-item:hover {
+  background: #f0f0f0;
+  border-color: #0066cc;
+  transform: translateX(2px);
+}
+
+.palette-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.palette-label {
+  flex: 1;
+  font-weight: 500;
+}
+
+/* Canvas Area */
+.canvas-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.canvas-header {
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  background: #fafafa;
+}
+
+.app-name-input {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.canvas {
+  flex: 1;
+  overflow: auto;
+  background: linear-gradient(135deg, #f5f5f5 25%, transparent 25%, transparent 75%, #f5f5f5 75%, #f5f5f5),
+              linear-gradient(135deg, #f5f5f5 25%, transparent 25%, transparent 75%, #f5f5f5 75%, #f5f5f5);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  background-color: white;
+}
+
+.canvas-grid {
+  padding: 2rem;
+  min-height: 100%;
+}
+
+.canvas-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #999;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.components-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.canvas-component {
+  position: relative;
+  padding: 1rem;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.canvas-component:hover {
+  border-color: #0066cc;
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.15);
+}
+
+.canvas-component.selected {
+  border-color: #0066cc;
+  background: #f0f7ff;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+.component-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.component-type {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background: #0066cc;
+  color: white;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.component-label {
+  font-weight: 500;
+  color: #333;
+}
+
+.component-actions {
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.canvas-component.selected .component-actions {
+  opacity: 1;
+}
+
+.component-actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: #f0f0f0;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #666;
+}
+
+.component-actions button:hover {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.component-actions button:active {
+  transform: scale(0.95);
+}
+
+/* Properties Panel */
+.properties-panel {
+  width: 300px;
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.properties-panel h3 {
+  margin: 0 0 1rem 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.properties-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input {
+  padding: 0.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+.properties-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.properties-actions button {
+  flex: 1;
+  font-size: 0.875rem;
+}
+
+.no-selection {
+  color: #999;
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+/* Preview Mode */
+.gui-builder-preview {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: white;
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #e0e0e0;
+  background: #fafafa;
+}
+
+.preview-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.preview-content {
+  flex: 1;
+  padding: 2rem;
+  overflow: auto;
+}
+
+.component-renderer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .gui-builder-content {
+    gap: 0.5rem;
+  }
+
+  .component-palette,
+  .properties-panel {
+    width: 180px;
+    padding: 0.75rem;
+  }
+
+  .component-palette h3,
+  .properties-panel h3 {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .gui-builder-container {
+    height: auto;
+  }
+
+  .gui-builder-content {
+    flex-direction: column;
+  }
+
+  .component-palette,
+  .properties-panel {
+    width: 100%;
+  }
+
+  .canvas-area {
+    min-height: 400px;
+  }
+}

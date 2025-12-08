@@ -1,0 +1,87 @@
+site_name: Zarish Sphere Documentation
+site_description: Enterprise-Grade, Open-Source, AI-powered Platform-as-a-Service for Non-Profits
+site_url: https://zarish-sphere-platform.github.io/zarish-sphere-ssot/
+repo_url: https://github.com/Zarish-Sphere-Platform/zarish-sphere-ssot
+repo_name: zarish-sphere-ssot
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  logo: assets/logo.png
+  favicon: assets/favicon.ico
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - toc.follow
+    - content.code.copy
+    - content.action.edit
+    - search.suggest
+    - search.highlight
+    - search.share
+  palette:
+    - scheme: default
+      primary: blue
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+plugins:
+  - search:
+      lang: en
+  - minify:
+      minify_html: true
+      minify_css: true
+      minify_js: true
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+  - tables
+  - attr_list
+  - md_in_html
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Architecture: architecture.md
+  - API Reference: api-reference.md
+  - Database Schema: database-schema.md
+  - Guides:
+      - Building Applications: guides/building-apps.md
+      - Deploying Applications: guides/deploying-apps.md
+      - Extending the Platform: guides/extending-platform.md
+  - Contributing: contributing.md
+  - FAQ: faq.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Zarish-Sphere-Platform
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/zarish_sphere
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/company/zarish-sphere
+
+copyright: Copyright &copy; 2025 Zarish Sphere Platform. All rights reserved.

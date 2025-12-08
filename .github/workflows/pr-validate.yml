@@ -1,0 +1,108 @@
+name: PR Validation - SSOT Integrity Check
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  ssot-integrity:
+    name: SSOT Integrity Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run SSOT Integrity Check
+        run: bash tools/check-generated.sh
+
+      - name: Run TypeScript check
+        run: pnpm check
+
+      - name: Run linter
+        run: pnpm format --check || true
+
+      - name: Run tests
+        run: pnpm test
+
+  documentation:
+    name: Documentation Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate documentation index
+        run: node tools/generate-index.mjs
+
+      - name: Check for uncommitted docs
+        run: |
+          if ! git diff --exit-code docs/INDEX.md > /dev/null 2>&1; then
+            echo "Documentation index is out of date"
+            echo "Run: node tools/generate-index.mjs"
+            exit 1
+          fi
+
+  todo-sync:
+    name: TODO Sync Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate TODO report
+        run: node tools/todo-sync.mjs
+
+      - name: Upload TODO report
+        uses: actions/upload-artifact@v3
+        with:
+          name: todo-report
+          path: TODO_REPORT.md
