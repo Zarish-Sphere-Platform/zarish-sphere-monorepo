@@ -1,6 +1,8 @@
 # Dependencies
 **/node_modules
 .pnpm-store/
+node_modules
+dist
 
 # Build outputs
 dist/
@@ -105,3 +107,13 @@ temp/
 *.db
 *.sqlite
 *.sqlite3
+
+# Monorepo tooling
+.turbo
+.nx
+
+# App-specific
+/apps/*/dist
+/packages/*/dist
+/apps/*/node_modules
+/packages/*/node_modules

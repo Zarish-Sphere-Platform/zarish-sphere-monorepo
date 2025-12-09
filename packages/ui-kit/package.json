@@ -1,0 +1,13 @@
+{
+  "name": "@zarish/ui-kit",
+  "version": "1.0.0",
+  "description": "Reusable UI components (Lego Blocks) for all Zarish Sphere applications.",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo 'No tests yet for UI Kit' && exit 0"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  }
+}

@@ -1,0 +1,79 @@
+name: Zarish Sphere SSOT Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  validate-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies & Setup Monorepo (Using Yarn)
+        run: |
+          # 1. Install Yarn globally to handle monorepo workspaces reliably
+          npm install -g yarn
+          
+          # 2. Use Yarn to install all root dependencies and link all workspaces
+          yarn install
+          
+          # 3. Install Python Dependencies for Docs separately
+          pip install mkdocs-material
+
+      - name: 🔍 Run Linters & Validation
+        run: |
+          # Example: Validate Markdown files
+          npx markdownlint '**/*.md' --ignore node_modules
+          # Here we would add Schema validation scripts
+
+      - name: ⚙️ Auto-Generate Indexes & TODOs
+        run: |
+          node scripts/generate-index.js
+          node scripts/sync-todos.js
+
+      - name: 📝 Commit Auto-Generated Files (PR Mode)
+        # Only runs if the scripts detected changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add MASTER_*.md **/README.md
+          git diff --quiet --exit-code || git commit -m "🤖 Auto-update Indexes, TODOs, and READMEs"
+
+      - name: 🏗️ Build Documentation Site
+        run: mkdocs build
+
+      - name: Setup Pages
+        if: github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v3
+        
+      - name: Upload artifact
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './site'
+          
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: validate-and-build
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v3

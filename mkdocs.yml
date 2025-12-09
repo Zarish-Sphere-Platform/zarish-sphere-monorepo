@@ -1,8 +1,8 @@
-site_name: Zarish Sphere Documentation
+site_name: Zarish Sphere Platform
 site_description: Enterprise-Grade, Open-Source, AI-powered Platform-as-a-Service for Non-Profits
-site_url: https://zarish-sphere-platform.github.io/zarish-sphere-ssot/
-repo_url: https://github.com/Zarish-Sphere-Platform/zarish-sphere-ssot
-repo_name: zarish-sphere-ssot
+site_url: https://zarish-sphere-platform.github.io/zarish-sphere-monorepo/
+repo_url: https://github.com/Zarish-Sphere-Platform/zarish-sphere-monorepo
+repo_name: zarish-sphere-monorepo
 edit_uri: edit/main/docs/
 
 theme:
@@ -74,6 +74,8 @@ nav:
       - Extending the Platform: guides/extending-platform.md
   - Contributing: contributing.md
   - FAQ: faq.md
+  - Master Index: INDEX.md
+  - Roadmap & TODOs: todo.md
 
 extra:
   social:

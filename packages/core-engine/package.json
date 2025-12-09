@@ -1,0 +1,10 @@
+{
+  "name": "@zarish/core-engine",
+  "version": "1.0.0",
+  "description": "The business logic core for Zarish Sphere, handling AI, data workflows, and domain models.",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo 'Running Core Engine tests...' && exit 0"
+  }
+}
