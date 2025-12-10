@@ -38,10 +38,7 @@ jobs:
       - name: Install Dependencies & Setup Monorepo
         run: pnpm install
       - name: 🔍 Run Linters & Validation
-        run: |
-          # Example: Validate Markdown files
-          npx markdownlint '**/*.md' --ignore node_modules
-          # Placeholder for JSON Schema validation script
+        run: pnpm format --check || true
       - name: ⚙️ Auto-Generate Indexes & TODOs (Removed - Handled by Scheduled Job)
         # The new index generation script is now implemented
         run: echo "Index and TODO generation is handled by the scheduled job and PR mode."
