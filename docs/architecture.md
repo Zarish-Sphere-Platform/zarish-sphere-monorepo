@@ -180,7 +180,7 @@ tools/
 ├── check-generated.sh    # PR-mode validation script
 ├── generate-index.mjs    # Master Index Generator
 ├── todo-sync.mjs         # Auto TODO Sync workflow
-└── README.md             # Tools documentation
+└── index.md             # Tools documentation
 ```
 
 ### `/.github` - CI/CD Workflows
@@ -396,11 +396,19 @@ See `contributing.md` for guidelines on contributing to Zarish Sphere.
 
 _Last Updated: 2025-12-07_
 
+## Related Documentation
+
+- [API Reference](api-reference.md)
+- [Database Schema](database-schema.md)
+- [Getting Started with Zarish Sphere](getting-started.md)
+- [Deploying Applications with Zarish Sphere](guides/deploying-apps.md)
+- [Extending Zarish Sphere](guides/extending-platform.md)
+
 ## Backlinks
 
-- [API Reference](../api-reference.md)
-- [Database Schema](../database-schema.md)
-- [Getting Started with Zarish Sphere](../getting-started.md)
-- [Deploying Applications with Zarish Sphere](../guides/deploying-apps.md)
-- [Extending Zarish Sphere](../guides/extending-platform.md)
-- [Zarish Sphere Platform](../index.md)
+- [API Reference](api-reference.md)
+- [Database Schema](database-schema.md)
+- [Getting Started with Zarish Sphere](getting-started.md)
+- [Deploying Applications with Zarish Sphere](guides/deploying-apps.md)
+- [Extending Zarish Sphere](guides/extending-platform.md)
+- [Zarish Sphere Platform](index.md)

@@ -237,7 +237,6 @@ pnpm check
 - Read the **Architecture Guide** (`architecture.md`) to understand the system design
 - Explore the **API Reference** (`api-reference.md`) for available endpoints
 - Check out **Contributing Guidelines** (`contributing.md`) to contribute to the project
-- Review the **TODO List** (`TODO.md`) to see planned features
 
 ## Getting Help
 
@@ -249,10 +248,9 @@ pnpm check
 ## Quick Links
 
 - [GitHub Repository](https://github.com/Zarish-Sphere-Platform/zarish-sphere-ssot)
-- [Architecture Guide](./architecture.md)
-- [API Reference](./api-reference.md)
-- [Contributing Guidelines](./contributing.md)
-- [Project TODO](./TODO.md)
+- [Architecture Guide](architecture.md)
+- [API Reference](api-reference.md)
+- [Contributing Guidelines](contributing.md)
 
 ---
 
@@ -260,4 +258,6 @@ Happy building! 🚀
 
 ## Backlinks
 
-- [Zarish Sphere Platform](../index.md)
+- [Zarish Sphere Architecture](architecture.md)
+- [Contributing to Zarish Sphere](contributing.md)
+- [Zarish Sphere Platform](index.md)

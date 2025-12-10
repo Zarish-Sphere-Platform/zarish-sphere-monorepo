@@ -158,7 +158,7 @@ Zarish Sphere is open-source and licensed under the MIT License. See LICENSE fil
 
 ## Roadmap
 
-See [Project TODO](TODO.md) for planned features and current development status.
+Check the [Contributing Guide](contributing.md) and [FAQ](faq.md) for information about planned features and development.
 
 ## Contributing
 
@@ -167,3 +167,8 @@ We welcome contributions from the community! See [Contributing Guidelines](contr
 ---
 
 **Ready to build?** Start with the [Getting Started Guide](getting-started.md)! 🚀
+
+## Backlinks
+
+- [Building Applications with Zarish Sphere](guides/building-apps.md)
+- [Deploying Applications with Zarish Sphere](guides/deploying-apps.md)

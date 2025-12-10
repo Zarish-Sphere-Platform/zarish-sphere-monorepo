@@ -446,3 +446,8 @@ To share your extensions with the community:
 ---
 
 For more help, see the [Architecture Guide](../architecture.md) or [Contributing Guidelines](../contributing.md).
+
+## Backlinks
+
+- [Zarish Sphere Architecture](../architecture.md)
+- [Contributing to Zarish Sphere](../contributing.md)
