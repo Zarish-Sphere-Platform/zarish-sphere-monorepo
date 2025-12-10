@@ -1,0 +1,110 @@
+name: PR Mode - Auto-Check, Validate, Push, Publish
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+      - develop
+
+permissions:
+  contents: write # For committing generated files
+  pull-requests: write # For commenting on the PR
+  statuses: write # For setting commit status
+
+jobs:
+  # Job 1: Run all validation checks (lint, schema, tests)
+  validation:
+    uses: ./.github/workflows/pr-validate.yml
+    secrets: inherit
+    
+  # Job 2: Auto-generate index/todo and commit to the PR branch
+  auto_update_and_commit:
+    needs: validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install jsonschema
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+          
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: ⚙️ Auto-Generate Master Index and Backlinks
+        run: python3 tools/generate_master_index.py
+        
+      - name: ⚙️ Auto-Update TODO.md (Placeholder)
+        run: node tools/todo-sync.mjs # Keeping the original node script for now
+        
+      - name: 📝 Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+      - name: 🔎 Check for Changes
+        id: git_status
+        run: |
+          git add .
+          if git diff --staged --quiet; then
+            echo "::set-output name=has_changes::false"
+          else
+            echo "::set-output name=has_changes::true"
+          fi
+
+      - name: 📝 Commit and Push Changes
+        if: steps.git_status.outputs.has_changes == 'true'
+        run: |
+          git commit -m "chore(docs): Auto-update Master Index and TODO.md for PR"
+          git push
+          
+  # Job 3: Build preview HTML site and upload artifact
+  build_preview:
+    needs: auto_update_and_commit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install mkdocs-material mkdocs-mermaid2-plugin mkdocs-git-revision-date-localized-plugin mkdocs-autorefs mkdocs-minify-plugin
+          
+      - name: 🏗️ Build Documentation Site
+        run: mkdocs build
+        
+      - name: Upload Preview Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-preview-${{ github.event.pull_request.number }}
+          path: './site'
+          retention-days: 7
