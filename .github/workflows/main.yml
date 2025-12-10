@@ -26,15 +26,15 @@ jobs:
           pip install --upgrade pip
           # Install all required MkDocs plugins
           pip install mkdocs-material mkdocs-mermaid2-plugin mkdocs-git-revision-date-localized-plugin mkdocs-autorefs mkdocs-minify-plugin
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'pnpm'
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
       - name: Install Dependencies & Setup Monorepo
         run: pnpm install
       - name: 🔍 Run Linters & Validation
