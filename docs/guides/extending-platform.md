@@ -40,7 +40,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   variant = 'primary'
 }) => {
   return (
-    <Button 
+    <Button
       onClick={onClick}
       variant={variant === 'primary' ? 'default' : 'outline'}
     >
@@ -55,19 +55,19 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
 Update the component registry in `/packages/ui-components/index.ts`:
 
 ```typescript
-export { CustomButton } from './CustomButton';
+export { CustomButton } from "./CustomButton";
 
 export const COMPONENT_REGISTRY = {
-  'custom-button': {
+  "custom-button": {
     component: CustomButton,
-    label: 'Custom Button',
-    icon: '🔘',
-    description: 'A custom button component',
+    label: "Custom Button",
+    icon: "🔘",
+    description: "A custom button component",
     properties: {
-      label: { type: 'string', default: 'Click me' },
-      variant: { type: 'select', options: ['primary', 'secondary'] },
-    }
-  }
+      label: { type: "string", default: "Click me" },
+      variant: { type: "select", options: ["primary", "secondary"] },
+    },
+  },
 };
 ```
 
@@ -79,7 +79,7 @@ Update the GUI Builder to include your component:
 // client/src/components/GUIBuilder.tsx
 const COMPONENT_PALETTE = [
   // ... existing components
-  { type: 'custom-button', label: 'Custom Button', icon: '🔘' },
+  { type: "custom-button", label: "Custom Button", icon: "🔘" },
 ];
 ```
 
@@ -94,7 +94,7 @@ const RenderComponent: React.FC<{ component: GUIComponent }> = ({ component }) =
     // ... existing cases
     case 'custom-button':
       return (
-        <CustomButton 
+        <CustomButton
           label={component.label || 'Button'}
           variant={component.props?.variant || 'primary'}
         />
@@ -112,10 +112,10 @@ Update the schema to include your component:
 ```typescript
 // schemas/db.ts
 export const componentTypes = [
-  'button',
-  'input',
-  'text',
-  'custom-button', // Add your component
+  "button",
+  "input",
+  "text",
+  "custom-button", // Add your component
   // ... other types
 ];
 ```
@@ -128,17 +128,17 @@ Create a new service in `/services`:
 
 ```typescript
 // services/custom-service/index.ts
-import { Router } from 'express';
+import { Router } from "express";
 
 const router = Router();
 
-router.post('/process', async (req, res) => {
+router.post("/process", async (req, res) => {
   try {
     const { data } = req.body;
-    
+
     // Process data
     const result = processData(data);
-    
+
     res.json({ success: true, result });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
@@ -159,7 +159,7 @@ Register the service in the API gateway:
 
 ```typescript
 // server/routers.ts
-import customService from '../services/custom-service';
+import customService from "../services/custom-service";
 
 export const appRouter = router({
   // ... existing routers
@@ -197,11 +197,11 @@ Add new table to the database schema:
 
 ```typescript
 // drizzle/schema.ts
-export const customData = mysqlTable('custom_data', {
-  id: int('id').autoincrement().primaryKey(),
-  userId: int('userId').notNull(),
-  data: json('data').notNull(),
-  createdAt: timestamp('createdAt').defaultNow().notNull(),
+export const customData = mysqlTable("custom_data", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  data: json("data").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 ```
 
@@ -224,8 +224,8 @@ Add helper function in `/server/db.ts`:
 ```typescript
 export async function saveCustomData(userId: number, data: any) {
   const db = await getDb();
-  if (!db) throw new Error('Database not available');
-  
+  if (!db) throw new Error("Database not available");
+
   return db.insert(customData).values({
     userId,
     data,
@@ -249,12 +249,12 @@ export interface Workflow {
 }
 
 export interface WorkflowTrigger {
-  type: 'form-submit' | 'button-click' | 'schedule';
+  type: "form-submit" | "button-click" | "schedule";
   config: any;
 }
 
 export interface WorkflowAction {
-  type: 'send-email' | 'save-data' | 'call-api';
+  type: "send-email" | "save-data" | "call-api";
   config: any;
 }
 ```
@@ -266,13 +266,13 @@ export interface WorkflowAction {
 export async function executeWorkflow(workflow: Workflow, context: any) {
   for (const action of workflow.actions) {
     switch (action.type) {
-      case 'send-email':
+      case "send-email":
         await sendEmail(action.config, context);
         break;
-      case 'save-data':
+      case "save-data":
         await saveData(action.config, context);
         break;
-      case 'call-api':
+      case "call-api":
         await callAPI(action.config, context);
         break;
     }
@@ -288,12 +288,9 @@ Create an integration module:
 
 ```typescript
 // services/integrations/slack.ts
-import axios from 'axios';
+import axios from "axios";
 
-export async function sendSlackMessage(
-  webhookUrl: string,
-  message: string
-) {
+export async function sendSlackMessage(webhookUrl: string, message: string) {
   return axios.post(webhookUrl, {
     text: message,
   });
@@ -308,11 +305,11 @@ Register in the integration registry:
 // services/integrations/registry.ts
 export const INTEGRATIONS = {
   slack: {
-    name: 'Slack',
-    icon: '💬',
+    name: "Slack",
+    icon: "💬",
     handler: sendSlackMessage,
     config: {
-      webhookUrl: { type: 'string', required: true },
+      webhookUrl: { type: "string", required: true },
     },
   },
 };
@@ -325,14 +322,16 @@ export const INTEGRATIONS = {
 export const appRouter = router({
   integrations: router({
     send: protectedProcedure
-      .input(z.object({
-        integration: z.string(),
-        config: z.any(),
-        message: z.string(),
-      }))
+      .input(
+        z.object({
+          integration: z.string(),
+          config: z.any(),
+          message: z.string(),
+        })
+      )
       .mutation(async ({ input }) => {
         const handler = INTEGRATIONS[input.integration]?.handler;
-        if (!handler) throw new Error('Integration not found');
+        if (!handler) throw new Error("Integration not found");
         return handler(input.config.webhookUrl, input.message);
       }),
   }),
@@ -345,17 +344,18 @@ export const appRouter = router({
 
 ```typescript
 // services/ai/suggestions.ts
-import { invokeLLM } from '../../server/_core/llm';
+import { invokeLLM } from "../../server/_core/llm";
 
 export async function suggestComponents(userIntent: string) {
   const response = await invokeLLM({
     messages: [
       {
-        role: 'system',
-        content: 'You are a UI/UX expert. Suggest components for building applications.',
+        role: "system",
+        content:
+          "You are a UI/UX expert. Suggest components for building applications.",
       },
       {
-        role: 'user',
+        role: "user",
         content: `User wants to: ${userIntent}. What components would you suggest?`,
       },
     ],
@@ -386,11 +386,11 @@ export const appRouter = router({
 
 ```typescript
 // services/custom-service/__tests__/index.test.ts
-import { describe, it, expect } from 'vitest';
-import { processData } from '../index';
+import { describe, it, expect } from "vitest";
+import { processData } from "../index";
 
-describe('Custom Service', () => {
-  it('should process data correctly', () => {
+describe("Custom Service", () => {
+  it("should process data correctly", () => {
     const input = { value: 10 };
     const result = processData(input);
     expect(result).toBeDefined();
@@ -402,11 +402,11 @@ describe('Custom Service', () => {
 
 ```typescript
 // __tests__/integration/custom-service.test.ts
-import { describe, it, expect } from 'vitest';
-import { appRouter } from '../../server/routers';
+import { describe, it, expect } from "vitest";
+import { appRouter } from "../../server/routers";
 
-describe('Custom Service Integration', () => {
-  it('should process data via API', async () => {
+describe("Custom Service Integration", () => {
+  it("should process data via API", async () => {
     const caller = appRouter.createCaller({});
     const result = await caller.custom.process({ data: { value: 10 } });
     expect(result).toBeDefined();

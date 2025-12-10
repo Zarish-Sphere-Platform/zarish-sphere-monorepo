@@ -8,7 +8,7 @@ jobs:
   ssot-integrity:
     name: SSOT Integrity Check
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -21,8 +21,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'pnpm'
+          node-version: "18"
+          cache: "pnpm"
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Run SSOT Integrity Check
@@ -36,15 +36,15 @@ jobs:
   documentation:
     name: Documentation Check
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          python-version: "3.11"
+          cache: "pip"
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
@@ -52,8 +52,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'pnpm'
+          node-version: "18"
+          cache: "pnpm"
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Generate documentation index
@@ -69,15 +69,15 @@ jobs:
   todo-sync:
     name: TODO Sync Check
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'pnpm'
+          node-version: "18"
+          cache: "pnpm"
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:

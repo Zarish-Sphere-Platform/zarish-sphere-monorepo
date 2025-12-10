@@ -1,9 +1,9 @@
 name: Zarish Sphere SSOT Pipeline
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 permissions:
   contents: write
   pages: write
@@ -19,8 +19,8 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          python-version: "3.11"
+          cache: "pip"
       - name: Install Python dependencies
         run: |
           pip install --upgrade pip
@@ -33,8 +33,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'pnpm'
+          node-version: "18"
+          cache: "pnpm"
       - name: Install Dependencies & Setup Monorepo
         run: pnpm install
       - name: 🔍 Run Linters & Validation
@@ -53,13 +53,13 @@ jobs:
       - name: Setup Pages
         if: github.ref == 'refs/heads/main'
         uses: actions/configure-pages@v4
-        
+
       - name: Upload artifact
         if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v4
         with:
-          path: './site'
-          
+          path: "./site"
+
   deploy:
     environment:
       name: github-pages

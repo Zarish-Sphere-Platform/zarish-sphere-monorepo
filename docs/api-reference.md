@@ -33,13 +33,14 @@ Get the current authenticated user.
 **Type:** Public Query
 
 **Response:**
+
 ```typescript
 {
   id: number;
   openId: string;
   name: string | null;
   email: string | null;
-  role: 'user' | 'admin';
+  role: "user" | "admin";
   createdAt: Date;
   updatedAt: Date;
   lastSignedIn: Date;
@@ -47,6 +48,7 @@ Get the current authenticated user.
 ```
 
 **Example:**
+
 ```typescript
 const user = await trpc.auth.me.useQuery();
 ```
@@ -58,6 +60,7 @@ Logout the current user.
 **Type:** Public Mutation
 
 **Response:**
+
 ```typescript
 {
   success: boolean;
@@ -65,6 +68,7 @@ Logout the current user.
 ```
 
 **Example:**
+
 ```typescript
 const { mutate } = trpc.auth.logout.useMutation();
 mutate();
@@ -79,6 +83,7 @@ Create a new application.
 **Type:** Protected Mutation
 
 **Input:**
+
 ```typescript
 {
   name: string;
@@ -88,6 +93,7 @@ Create a new application.
 ```
 
 **Response:**
+
 ```typescript
 {
   id: string;
@@ -100,12 +106,13 @@ Create a new application.
 ```
 
 **Example:**
+
 ```typescript
 const { mutate } = trpc.builder.createApplication.useMutation();
 mutate({
-  name: 'My First App',
-  description: 'A test application',
-  components: []
+  name: "My First App",
+  description: "A test application",
+  components: [],
 });
 ```
 
@@ -116,6 +123,7 @@ Get an application by ID.
 **Type:** Protected Query
 
 **Input:**
+
 ```typescript
 {
   id: string;
@@ -123,6 +131,7 @@ Get an application by ID.
 ```
 
 **Response:**
+
 ```typescript
 {
   id: string;
@@ -135,8 +144,9 @@ Get an application by ID.
 ```
 
 **Example:**
+
 ```typescript
-const { data } = trpc.builder.getApplication.useQuery({ id: 'app-123' });
+const { data } = trpc.builder.getApplication.useQuery({ id: "app-123" });
 ```
 
 #### `builder.updateApplication`
@@ -146,6 +156,7 @@ Update an application.
 **Type:** Protected Mutation
 
 **Input:**
+
 ```typescript
 {
   id: string;
@@ -156,6 +167,7 @@ Update an application.
 ```
 
 **Response:**
+
 ```typescript
 {
   id: string;
@@ -168,11 +180,12 @@ Update an application.
 ```
 
 **Example:**
+
 ```typescript
 const { mutate } = trpc.builder.updateApplication.useMutation();
 mutate({
-  id: 'app-123',
-  name: 'Updated Name'
+  id: "app-123",
+  name: "Updated Name",
 });
 ```
 
@@ -183,6 +196,7 @@ Delete an application.
 **Type:** Protected Mutation
 
 **Input:**
+
 ```typescript
 {
   id: string;
@@ -190,6 +204,7 @@ Delete an application.
 ```
 
 **Response:**
+
 ```typescript
 {
   success: boolean;
@@ -197,9 +212,10 @@ Delete an application.
 ```
 
 **Example:**
+
 ```typescript
 const { mutate } = trpc.builder.deleteApplication.useMutation();
-mutate({ id: 'app-123' });
+mutate({ id: "app-123" });
 ```
 
 #### `builder.listApplications`
@@ -209,6 +225,7 @@ List all applications for the current user.
 **Type:** Protected Query
 
 **Input:**
+
 ```typescript
 {
   limit?: number;
@@ -217,6 +234,7 @@ List all applications for the current user.
 ```
 
 **Response:**
+
 ```typescript
 {
   applications: Array<{
@@ -231,6 +249,7 @@ List all applications for the current user.
 ```
 
 **Example:**
+
 ```typescript
 const { data } = trpc.builder.listApplications.useQuery({ limit: 10 });
 ```
@@ -244,6 +263,7 @@ Get the available component library.
 **Type:** Public Query
 
 **Response:**
+
 ```typescript
 {
   components: Array<{
@@ -257,6 +277,7 @@ Get the available component library.
 ```
 
 **Example:**
+
 ```typescript
 const { data } = trpc.components.getLibrary.useQuery();
 ```
@@ -268,6 +289,7 @@ Validate a component definition.
 **Type:** Public Query
 
 **Input:**
+
 ```typescript
 {
   component: GUIComponent;
@@ -275,6 +297,7 @@ Validate a component definition.
 ```
 
 **Response:**
+
 ```typescript
 {
   valid: boolean;
@@ -283,9 +306,10 @@ Validate a component definition.
 ```
 
 **Example:**
+
 ```typescript
 const { data } = trpc.components.validateComponent.useQuery({
-  component: { type: 'button', label: 'Click me' }
+  component: { type: "button", label: "Click me" },
 });
 ```
 
@@ -298,29 +322,32 @@ Deploy an application.
 **Type:** Protected Mutation
 
 **Input:**
+
 ```typescript
 {
   applicationId: string;
-  environment: 'staging' | 'production';
+  environment: "staging" | "production";
 }
 ```
 
 **Response:**
+
 ```typescript
 {
   deploymentId: string;
-  status: 'pending' | 'in-progress' | 'completed' | 'failed';
+  status: "pending" | "in-progress" | "completed" | "failed";
   url: string;
   createdAt: Date;
 }
 ```
 
 **Example:**
+
 ```typescript
 const { mutate } = trpc.deployment.deploy.useMutation();
 mutate({
-  applicationId: 'app-123',
-  environment: 'production'
+  applicationId: "app-123",
+  environment: "production",
 });
 ```
 
@@ -331,6 +358,7 @@ Get deployment status.
 **Type:** Protected Query
 
 **Input:**
+
 ```typescript
 {
   deploymentId: string;
@@ -338,6 +366,7 @@ Get deployment status.
 ```
 
 **Response:**
+
 ```typescript
 {
   deploymentId: string;
@@ -349,8 +378,11 @@ Get deployment status.
 ```
 
 **Example:**
+
 ```typescript
-const { data } = trpc.deployment.getStatus.useQuery({ deploymentId: 'deploy-123' });
+const { data } = trpc.deployment.getStatus.useQuery({
+  deploymentId: "deploy-123",
+});
 ```
 
 ## Data Types
@@ -360,7 +392,15 @@ const { data } = trpc.deployment.getStatus.useQuery({ deploymentId: 'deploy-123'
 ```typescript
 interface GUIComponent {
   id: string;
-  type: 'button' | 'input' | 'text' | 'card' | 'container' | 'form' | 'image' | 'heading';
+  type:
+    | "button"
+    | "input"
+    | "text"
+    | "card"
+    | "container"
+    | "form"
+    | "image"
+    | "heading";
   label?: string;
   placeholder?: string;
   children?: GUIComponent[];
@@ -403,8 +443,8 @@ List endpoints support pagination:
 
 ```typescript
 {
-  limit: number;      // Items per page (default: 10, max: 100)
-  offset: number;     // Number of items to skip (default: 0)
+  limit: number; // Items per page (default: 10, max: 100)
+  offset: number; // Number of items to skip (default: 0)
 }
 ```
 
@@ -430,6 +470,7 @@ Zarish Sphere supports webhooks for deployment events:
 - `deployment.failed` - Deployment failed
 
 **Webhook Payload:**
+
 ```typescript
 {
   event: string;
@@ -449,26 +490,26 @@ Zarish Sphere supports webhooks for deployment events:
 ### Building an Application with TypeScript
 
 ```typescript
-import { trpc } from '@/lib/trpc';
+import { trpc } from "@/lib/trpc";
 
 async function buildAndDeploy() {
   // Create application
   const app = await trpc.builder.createApplication.mutate({
-    name: 'My App',
-    description: 'A test app',
+    name: "My App",
+    description: "A test app",
     components: [
       {
-        id: '1',
-        type: 'button',
-        label: 'Click me'
-      }
-    ]
+        id: "1",
+        type: "button",
+        label: "Click me",
+      },
+    ],
   });
 
   // Deploy application
   const deployment = await trpc.deployment.deploy.mutate({
     applicationId: app.id,
-    environment: 'production'
+    environment: "production",
   });
 
   console.log(`Deployed to: ${deployment.url}`);

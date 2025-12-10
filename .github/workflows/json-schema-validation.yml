@@ -2,27 +2,27 @@ name: JSON Schema Validation
 on:
   pull_request:
     paths:
-      - 'schemas/**'
-      - 'data/**'
-      - 'tools/validate_json_schema.py'
-      
+      - "schemas/**"
+      - "data/**"
+      - "tools/validate_json_schema.py"
+
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-          cache: 'pip'
-          
+          python-version: "3.11"
+          cache: "pip"
+
       - name: Install Python dependencies
         run: |
           pip install --upgrade pip
           pip install jsonschema
-          
+
       - name: Run JSON Schema Validation
         run: python3 tools/validate_json_schema.py

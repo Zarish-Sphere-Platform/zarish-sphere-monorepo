@@ -101,17 +101,17 @@ pnpm test:coverage
 Example:
 
 ```typescript
-import { describe, it, expect } from 'vitest';
-import { validateComponent } from './validator';
+import { describe, it, expect } from "vitest";
+import { validateComponent } from "./validator";
 
-describe('validateComponent', () => {
-  it('should validate a valid component', () => {
-    const component = { type: 'button', label: 'Click me' };
+describe("validateComponent", () => {
+  it("should validate a valid component", () => {
+    const component = { type: "button", label: "Click me" };
     expect(validateComponent(component)).toBe(true);
   });
 
-  it('should reject invalid component type', () => {
-    const component = { type: 'invalid', label: 'Click me' };
+  it("should reject invalid component type", () => {
+    const component = { type: "invalid", label: "Click me" };
     expect(validateComponent(component)).toBe(false);
   });
 });

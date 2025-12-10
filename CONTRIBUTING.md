@@ -10,19 +10,19 @@ Welcome! We are thrilled you are considering contributing to the Zarish Sphere P
     pnpm install
     ```
 3.  **Local Development:** All projects are located in `apps/` (deployable services) and `packages/` (reusable components).
-    *   To run a specific application, refer to its local `README.md` file.
+    - To run a specific application, refer to its local `README.md` file.
 
 ## 2. Monorepo Principles (SSOT for Code)
 
-*   **Atomic Commits:** All related changes across different packages (e.g., a change in a core package and its usage in an app) must be included in a single commit.
-*   **Shared Dependencies:** Always use the shared dependencies defined in the root `package.json` or a common package in `packages/`. Avoid installing duplicate dependencies.
-*   **Tooling:** Use the scripts defined in the root `package.json` (e.g., `pnpm run lint`, `pnpm run test`).
+- **Atomic Commits:** All related changes across different packages (e.g., a change in a core package and its usage in an app) must be included in a single commit.
+- **Shared Dependencies:** Always use the shared dependencies defined in the root `package.json` or a common package in `packages/`. Avoid installing duplicate dependencies.
+- **Tooling:** Use the scripts defined in the root `package.json` (e.g., `pnpm run lint`, `pnpm run test`).
 
 ## 3. Documentation is Code (SSOT for Knowledge)
 
-*   **Architecture:** All major design decisions and architectural changes must be documented in the `docs/` directory.
-*   **READMEs:** Every application in `apps/` and package in `packages/` must have a comprehensive `README.md` explaining its purpose, usage, and local setup.
-*   **TODOs:** Use the standard `// TODO: [Your Task]` format in code. The `pnpm run todo` script will automatically sync these to the master list.
+- **Architecture:** All major design decisions and architectural changes must be documented in the `docs/` directory.
+- **READMEs:** Every application in `apps/` and package in `packages/` must have a comprehensive `README.md` explaining its purpose, usage, and local setup.
+- **TODOs:** Use the standard `// TODO: [Your Task]` format in code. The `pnpm run todo` script will automatically sync these to the master list.
 
 ## 4. Submitting a Pull Request
 

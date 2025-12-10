@@ -1,16 +1,24 @@
-import React, { useState, useCallback } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Trash2, Copy, Undo2, Redo2, Download, Eye } from 'lucide-react';
-import './GUIBuilder.css';
+import React, { useState, useCallback } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Trash2, Copy, Undo2, Redo2, Download, Eye } from "lucide-react";
+import "./GUIBuilder.css";
 
 export interface GUIComponent {
   id: string;
-  type: 'button' | 'input' | 'text' | 'card' | 'container' | 'form' | 'image' | 'heading';
+  type:
+    | "button"
+    | "input"
+    | "text"
+    | "card"
+    | "container"
+    | "form"
+    | "image"
+    | "heading";
   label?: string;
   placeholder?: string;
   children?: GUIComponent[];
@@ -29,14 +37,14 @@ interface BuiltApplication {
 }
 
 const COMPONENT_PALETTE = [
-  { type: 'button', label: 'Button', icon: '🔘' },
-  { type: 'input', label: 'Input Field', icon: '📝' },
-  { type: 'text', label: 'Text', icon: '📄' },
-  { type: 'heading', label: 'Heading', icon: '📌' },
-  { type: 'card', label: 'Card', icon: '📦' },
-  { type: 'container', label: 'Container', icon: '📐' },
-  { type: 'form', label: 'Form', icon: '📋' },
-  { type: 'image', label: 'Image', icon: '🖼️' },
+  { type: "button", label: "Button", icon: "🔘" },
+  { type: "input", label: "Input Field", icon: "📝" },
+  { type: "text", label: "Text", icon: "📄" },
+  { type: "heading", label: "Heading", icon: "📌" },
+  { type: "card", label: "Card", icon: "📦" },
+  { type: "container", label: "Container", icon: "📐" },
+  { type: "form", label: "Form", icon: "📋" },
+  { type: "image", label: "Image", icon: "🖼️" },
 ];
 
 export const GUIBuilder: React.FC = () => {
@@ -44,8 +52,8 @@ export const GUIBuilder: React.FC = () => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [history, setHistory] = useState<GUIComponent[][]>([[]]);
   const [historyIndex, setHistoryIndex] = useState(0);
-  const [appName, setAppName] = useState('My Application');
-  const [appDescription, setAppDescription] = useState('');
+  const [appName, setAppName] = useState("My Application");
+  const [appDescription, setAppDescription] = useState("");
   const [previewMode, setPreviewMode] = useState(false);
 
   const selectedComponent = selectedId
@@ -53,13 +61,16 @@ export const GUIBuilder: React.FC = () => {
     : null;
 
   // History management
-  const updateHistory = useCallback((newComponents: GUIComponent[]) => {
-    const newHistory = history.slice(0, historyIndex + 1);
-    newHistory.push(newComponents);
-    setHistory(newHistory);
-    setHistoryIndex(newHistory.length - 1);
-    setComponents(newComponents);
-  }, [history, historyIndex]);
+  const updateHistory = useCallback(
+    (newComponents: GUIComponent[]) => {
+      const newHistory = history.slice(0, historyIndex + 1);
+      newHistory.push(newComponents);
+      setHistory(newHistory);
+      setHistoryIndex(newHistory.length - 1);
+      setComponents(newComponents);
+    },
+    [history, historyIndex]
+  );
 
   const undo = useCallback(() => {
     if (historyIndex > 0) {
@@ -78,39 +89,51 @@ export const GUIBuilder: React.FC = () => {
   }, [history, historyIndex]);
 
   // Component management
-  const addComponent = useCallback((type: string) => {
-    const newComponent: GUIComponent = {
-      id: uuidv4(),
-      type: type as any,
-      label: `${type.charAt(0).toUpperCase() + type.slice(1)}`,
-      position: { x: Math.random() * 200, y: Math.random() * 200 },
-      size: { width: 200, height: 50 },
-      children: [],
-    };
-    updateHistory([...components, newComponent]);
-  }, [components, updateHistory]);
-
-  const deleteComponent = useCallback((id: string) => {
-    const newComponents = components.filter(c => c.id !== id);
-    updateHistory(newComponents);
-    if (selectedId === id) setSelectedId(null);
-  }, [components, selectedId, updateHistory]);
-
-  const duplicateComponent = useCallback((id: string) => {
-    const component = findComponentById(components, id);
-    if (component) {
-      const newComponent = {
-        ...JSON.parse(JSON.stringify(component)),
+  const addComponent = useCallback(
+    (type: string) => {
+      const newComponent: GUIComponent = {
         id: uuidv4(),
+        type: type as any,
+        label: `${type.charAt(0).toUpperCase() + type.slice(1)}`,
+        position: { x: Math.random() * 200, y: Math.random() * 200 },
+        size: { width: 200, height: 50 },
+        children: [],
       };
       updateHistory([...components, newComponent]);
-    }
-  }, [components, updateHistory]);
+    },
+    [components, updateHistory]
+  );
 
-  const updateComponent = useCallback((id: string, updates: Partial<GUIComponent>) => {
-    const newComponents = updateComponentById(components, id, updates);
-    updateHistory(newComponents);
-  }, [components, updateHistory]);
+  const deleteComponent = useCallback(
+    (id: string) => {
+      const newComponents = components.filter(c => c.id !== id);
+      updateHistory(newComponents);
+      if (selectedId === id) setSelectedId(null);
+    },
+    [components, selectedId, updateHistory]
+  );
+
+  const duplicateComponent = useCallback(
+    (id: string) => {
+      const component = findComponentById(components, id);
+      if (component) {
+        const newComponent = {
+          ...JSON.parse(JSON.stringify(component)),
+          id: uuidv4(),
+        };
+        updateHistory([...components, newComponent]);
+      }
+    },
+    [components, updateHistory]
+  );
+
+  const updateComponent = useCallback(
+    (id: string, updates: Partial<GUIComponent>) => {
+      const newComponents = updateComponentById(components, id, updates);
+      updateHistory(newComponents);
+    },
+    [components, updateHistory]
+  );
 
   const exportJSON = useCallback(() => {
     const app: BuiltApplication = {
@@ -122,11 +145,11 @@ export const GUIBuilder: React.FC = () => {
       updatedAt: new Date(),
     };
     const json = JSON.stringify(app, null, 2);
-    const blob = new Blob([json], { type: 'application/json' });
+    const blob = new Blob([json], { type: "application/json" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
-    a.download = `${appName.replace(/\s+/g, '-')}.json`;
+    a.download = `${appName.replace(/\s+/g, "-")}.json`;
     a.click();
   }, [components, appName, appDescription]);
 
@@ -155,10 +178,18 @@ export const GUIBuilder: React.FC = () => {
           <Button onClick={undo} disabled={historyIndex === 0} size="sm">
             <Undo2 className="w-4 h-4" /> Undo
           </Button>
-          <Button onClick={redo} disabled={historyIndex === history.length - 1} size="sm">
+          <Button
+            onClick={redo}
+            disabled={historyIndex === history.length - 1}
+            size="sm"
+          >
             <Redo2 className="w-4 h-4" /> Redo
           </Button>
-          <Button onClick={() => setPreviewMode(true)} variant="outline" size="sm">
+          <Button
+            onClick={() => setPreviewMode(true)}
+            variant="outline"
+            size="sm"
+          >
             <Eye className="w-4 h-4" /> Preview
           </Button>
           <Button onClick={exportJSON} variant="outline" size="sm">
@@ -191,7 +222,7 @@ export const GUIBuilder: React.FC = () => {
           <div className="canvas-header">
             <Input
               value={appName}
-              onChange={(e) => setAppName(e.target.value)}
+              onChange={e => setAppName(e.target.value)}
               placeholder="Application Name"
               className="app-name-input"
             />
@@ -232,20 +263,24 @@ export const GUIBuilder: React.FC = () => {
               <div className="form-group">
                 <Label>Label</Label>
                 <Input
-                  value={selectedComponent.label || ''}
-                  onChange={(e) =>
-                    updateComponent(selectedComponent.id, { label: e.target.value })
+                  value={selectedComponent.label || ""}
+                  onChange={e =>
+                    updateComponent(selectedComponent.id, {
+                      label: e.target.value,
+                    })
                   }
                   placeholder="Component label"
                 />
               </div>
-              {selectedComponent.type === 'input' && (
+              {selectedComponent.type === "input" && (
                 <div className="form-group">
                   <Label>Placeholder</Label>
                   <Input
-                    value={selectedComponent.placeholder || ''}
-                    onChange={(e) =>
-                      updateComponent(selectedComponent.id, { placeholder: e.target.value })
+                    value={selectedComponent.placeholder || ""}
+                    onChange={e =>
+                      updateComponent(selectedComponent.id, {
+                        placeholder: e.target.value,
+                      })
                     }
                     placeholder="Input placeholder"
                   />
@@ -256,9 +291,12 @@ export const GUIBuilder: React.FC = () => {
                 <Input
                   type="number"
                   value={selectedComponent.size?.width || 200}
-                  onChange={(e) =>
+                  onChange={e =>
                     updateComponent(selectedComponent.id, {
-                      size: { width: parseInt(e.target.value), height: selectedComponent.size?.height || 50 },
+                      size: {
+                        width: parseInt(e.target.value),
+                        height: selectedComponent.size?.height || 50,
+                      },
                     })
                   }
                 />
@@ -268,9 +306,12 @@ export const GUIBuilder: React.FC = () => {
                 <Input
                   type="number"
                   value={selectedComponent.size?.height || 50}
-                  onChange={(e) =>
+                  onChange={e =>
                     updateComponent(selectedComponent.id, {
-                      size: { width: selectedComponent.size?.width || 200, height: parseInt(e.target.value) },
+                      size: {
+                        width: selectedComponent.size?.width || 200,
+                        height: parseInt(e.target.value),
+                      },
                     })
                   }
                 />
@@ -293,7 +334,9 @@ export const GUIBuilder: React.FC = () => {
               </div>
             </div>
           ) : (
-            <p className="no-selection">Select a component to edit properties</p>
+            <p className="no-selection">
+              Select a component to edit properties
+            </p>
           )}
         </div>
       </div>
@@ -318,7 +361,7 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
 }) => {
   return (
     <div
-      className={`canvas-component ${isSelected ? 'selected' : ''}`}
+      className={`canvas-component ${isSelected ? "selected" : ""}`}
       onClick={onSelect}
       style={{
         width: component.size?.width,
@@ -327,14 +370,28 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
     >
       <div className="component-content">
         <span className="component-type">{component.type}</span>
-        {component.label && <span className="component-label">{component.label}</span>}
+        {component.label && (
+          <span className="component-label">{component.label}</span>
+        )}
       </div>
       {isSelected && (
         <div className="component-actions">
-          <button onClick={(e) => { e.stopPropagation(); onDuplicate(); }} title="Duplicate">
+          <button
+            onClick={e => {
+              e.stopPropagation();
+              onDuplicate();
+            }}
+            title="Duplicate"
+          >
             <Copy className="w-3 h-3" />
           </button>
-          <button onClick={(e) => { e.stopPropagation(); onDelete(); }} title="Delete">
+          <button
+            onClick={e => {
+              e.stopPropagation();
+              onDelete();
+            }}
+            title="Delete"
+          >
             <Trash2 className="w-3 h-3" />
           </button>
         </div>
@@ -347,7 +404,9 @@ interface ComponentRendererProps {
   components: GUIComponent[];
 }
 
-const ComponentRenderer: React.FC<ComponentRendererProps> = ({ components }) => {
+const ComponentRenderer: React.FC<ComponentRendererProps> = ({
+  components,
+}) => {
   return (
     <div className="component-renderer">
       {components.map(comp => (
@@ -357,23 +416,25 @@ const ComponentRenderer: React.FC<ComponentRendererProps> = ({ components }) => 
   );
 };
 
-const RenderComponent: React.FC<{ component: GUIComponent }> = ({ component }) => {
+const RenderComponent: React.FC<{ component: GUIComponent }> = ({
+  component,
+}) => {
   switch (component.type) {
-    case 'button':
-      return <Button>{component.label || 'Button'}</Button>;
-    case 'input':
-      return <Input placeholder={component.placeholder || 'Enter text...'} />;
-    case 'text':
-      return <p>{component.label || 'Text'}</p>;
-    case 'heading':
-      return <h2>{component.label || 'Heading'}</h2>;
-    case 'card':
+    case "button":
+      return <Button>{component.label || "Button"}</Button>;
+    case "input":
+      return <Input placeholder={component.placeholder || "Enter text..."} />;
+    case "text":
+      return <p>{component.label || "Text"}</p>;
+    case "heading":
+      return <h2>{component.label || "Heading"}</h2>;
+    case "card":
       return (
         <Card className="p-4">
-          <p>{component.label || 'Card content'}</p>
+          <p>{component.label || "Card content"}</p>
         </Card>
       );
-    case 'container':
+    case "container":
       return (
         <div className="border p-4 rounded">
           {component.children?.map(child => (

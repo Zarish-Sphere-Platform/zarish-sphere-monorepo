@@ -35,6 +35,7 @@ cp .env.example .env.local
 ```
 
 Update the following variables:
+
 - `DATABASE_URL` - Your database connection string
 - `VITE_APP_ID` - Your OAuth application ID
 - `OAUTH_SERVER_URL` - OAuth server URL
