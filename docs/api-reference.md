@@ -505,3 +505,8 @@ The full OpenAPI specification is available at `/api/openapi.json`
 ---
 
 For more information, see the [Architecture Guide](architecture.md).
+
+## Backlinks
+
+- [Getting Started with Zarish Sphere](../getting-started.md)
+- [Zarish Sphere Platform](../index.md)

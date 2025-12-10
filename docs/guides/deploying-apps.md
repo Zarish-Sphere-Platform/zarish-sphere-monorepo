@@ -438,3 +438,8 @@ curl https://your-domain.com
 ---
 
 For more help, see the [FAQ](../faq.md) or [Architecture Guide](../architecture.md).
+
+## Backlinks
+
+- [Building Applications with Zarish Sphere](../guides/building-apps.md)
+- [Zarish Sphere Platform](../index.md)
