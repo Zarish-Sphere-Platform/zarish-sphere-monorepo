@@ -1,68 +1,60 @@
 name: Zarish Sphere SSOT Pipeline
-
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
 permissions:
   contents: write
   pages: write
   id-token: write
-
 jobs:
   validate-and-build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
-
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          # Install all required MkDocs plugins
+          pip install mkdocs-material mkdocs-mermaid2-plugin mkdocs-git-revision-date-localized-plugin mkdocs-autorefs mkdocs-minify-plugin
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
-
-      - name: Install Dependencies & Setup Monorepo (Using Yarn)
-        run: |
-          # 1. Install Yarn globally to handle monorepo workspaces reliably
-          npm install -g yarn
-          
-          # 2. Use Yarn to install all root dependencies and link all workspaces
-          yarn install
-          
-          # 3. Install Python Dependencies for Docs separately
-          pip install mkdocs-material
-
+          cache: 'pnpm'
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Install Dependencies & Setup Monorepo
+        run: pnpm install --frozen-lockfile
       - name: 🔍 Run Linters & Validation
         run: |
           # Example: Validate Markdown files
           npx markdownlint '**/*.md' --ignore node_modules
-          # Here we would add Schema validation scripts
-
-      - name: ⚙️ Auto-Generate Indexes & TODOs
-        run: |
-          node scripts/generate-index.js
-          node scripts/sync-todos.js
-
-      - name: 📝 Commit Auto-Generated Files (PR Mode)
-        # Only runs if the scripts detected changes
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add MASTER_*.md **/README.md
-          git diff --quiet --exit-code || git commit -m "🤖 Auto-update Indexes, TODOs, and READMEs"
-
+          # Placeholder for JSON Schema validation script
+      - name: ⚙️ Auto-Generate Indexes & TODOs (Removed - Handled by Scheduled Job)
+        # The new index generation script is now implemented
+        run: echo "Index and TODO generation is handled by the scheduled job and PR mode."
+      - name: 📝 Commit Auto-Generated Files (Removed - Handled by PR Mode)
+        # This step is only relevant for a dedicated PR workflow, removing from main push
+        run: echo "Commit step is handled by the PR mode workflow."
       - name: 🏗️ Build Documentation Site
         run: mkdocs build
-
       - name: Setup Pages
         if: github.ref == 'refs/heads/main'
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v4
         
       - name: Upload artifact
         if: github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: './site'
           
@@ -76,4 +68,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4

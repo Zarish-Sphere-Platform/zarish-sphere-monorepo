@@ -44,6 +44,9 @@ plugins:
       minify_html: true
       minify_css: true
       minify_js: true
+  - mermaid2
+  - git-revision-date-localized
+  - autorefs
 
 markdown_extensions:
   - admonition
@@ -85,5 +88,5 @@ extra:
       link: https://twitter.com/zarish_sphere
     - icon: fontawesome/brands/linkedin
       link: https://linkedin.com/company/zarish-sphere
-
+    
 copyright: Copyright &copy; 2025 Zarish Sphere Platform. All rights reserved.
