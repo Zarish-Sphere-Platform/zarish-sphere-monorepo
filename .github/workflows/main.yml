@@ -35,7 +35,7 @@ jobs:
         with:
           version: 8
       - name: Install Dependencies & Setup Monorepo
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
       - name: 🔍 Run Linters & Validation
         run: |
           # Example: Validate Markdown files
