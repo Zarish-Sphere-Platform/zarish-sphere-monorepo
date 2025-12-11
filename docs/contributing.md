@@ -232,8 +232,8 @@ Thank you for contributing to Zarish Sphere! 🚀
 
 ## Backlinks
 
-- [Frequently Asked Questions (FAQ)](faq.md)
-- [Getting Started with Zarish Sphere](getting-started.md)
-- [Building Applications with Zarish Sphere](guides/building-apps.md)
-- [Extending Zarish Sphere](guides/extending-platform.md)
-- [Zarish Sphere Platform](index.md)
+- [Frequently Asked Questions (FAQ)](../faq.md)
+- [Getting Started with Zarish Sphere](../getting-started.md)
+- [Building Applications with Zarish Sphere](../guides/building-apps.md)
+- [Extending Zarish Sphere](../guides/extending-platform.md)
+- [Zarish Sphere Platform](../index.md)

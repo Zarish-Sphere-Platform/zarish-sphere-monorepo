@@ -451,5 +451,5 @@ For more help, see the [FAQ](../faq.md) or [Architecture Guide](../architecture.
 
 - [Zarish Sphere Architecture](../architecture.md)
 - [Frequently Asked Questions (FAQ)](../faq.md)
-- [Building Applications with Zarish Sphere](building-apps.md)
+- [Building Applications with Zarish Sphere](../guides/building-apps.md)
 - [Zarish Sphere Platform](../index.md)

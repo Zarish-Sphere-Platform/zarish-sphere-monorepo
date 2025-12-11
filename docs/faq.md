@@ -206,7 +206,7 @@ Last Updated: 2025-12-07
 
 ## Backlinks
 
-- [Contributing to Zarish Sphere](contributing.md)
-- [Building Applications with Zarish Sphere](guides/building-apps.md)
-- [Deploying Applications with Zarish Sphere](guides/deploying-apps.md)
-- [Zarish Sphere Platform](index.md)
+- [Contributing to Zarish Sphere](../contributing.md)
+- [Building Applications with Zarish Sphere](../guides/building-apps.md)
+- [Deploying Applications with Zarish Sphere](../guides/deploying-apps.md)
+- [Zarish Sphere Platform](../index.md)

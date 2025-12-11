@@ -328,5 +328,5 @@ For more information, see the [Architecture Guide](architecture.md).
 
 ## Backlinks
 
-- [Zarish Sphere Architecture](architecture.md)
-- [Zarish Sphere Platform](index.md)
+- [Zarish Sphere Architecture](../architecture.md)
+- [Zarish Sphere Platform](../index.md)

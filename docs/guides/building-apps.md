@@ -320,5 +320,5 @@ For more help, see the [FAQ](../faq.md) or [Contributing Guidelines](../contribu
 
 - [Contributing to Zarish Sphere](../contributing.md)
 - [Frequently Asked Questions (FAQ)](../faq.md)
-- [Deploying Applications with Zarish Sphere](deploying-apps.md)
+- [Deploying Applications with Zarish Sphere](../guides/deploying-apps.md)
 - [Zarish Sphere Platform](../index.md)

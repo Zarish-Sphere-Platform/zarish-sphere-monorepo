@@ -11,5 +11,4 @@ This index is automatically generated and updated on every push to the repositor
 - [Frequently Asked Questions (FAQ)](faq.md)
 - [Getting Started with Zarish Sphere](getting-started.md)
 - [Zarish Sphere Architecture](architecture.md)
-- [Zarish Sphere Documentation Hub](index.md)
 - [Zarish Sphere Platform](index.md)
