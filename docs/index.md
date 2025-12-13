@@ -45,7 +45,7 @@ Built-in authentication, authorization, and data encryption.
 1. **Install Dependencies**
    ```bash
    git clone https://github.com/Zarish-Sphere-Platform/zarish-sphere-monorepo.git
-   cd zarish-sphere-ssot
+   cd zarish-sphere-monorepo
    pnpm install
    ```
 
