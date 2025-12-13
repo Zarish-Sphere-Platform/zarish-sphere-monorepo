@@ -180,7 +180,7 @@ tools/
 ├── check-generated.sh    # PR-mode validation script
 ├── generate-index.mjs    # Master Index Generator
 ├── todo-sync.mjs         # Auto TODO Sync workflow
-└── index.md             # Tools documentation
+└── README.md             # Tools documentation
 ```
 
 ### `/.github` - CI/CD Workflows
@@ -243,7 +243,6 @@ tools/
 ## Technology Stack
 
 ### Frontend
-
 - **React 19** - UI framework
 - **Tailwind CSS 4** - Styling
 - **Zustand** - State management
@@ -251,18 +250,15 @@ tools/
 - **TypeScript** - Type safety
 
 ### Backend
-
 - **Express 4** - HTTP server
 - **tRPC 11** - Type-safe RPC
 - **Drizzle ORM** - Database access
 - **Node.js** - Runtime
 
 ### Database
-
 - **MySQL/TiDB** - Primary database
 
 ### DevOps
-
 - **GitHub Actions** - CI/CD
 - **GitHub Pages** - Documentation hosting
 - **Docker** - Containerization (future)
@@ -270,31 +266,24 @@ tools/
 ## Key Features
 
 ### 1. GUI Builder
-
 Non-coders can drag-and-drop components to build applications without writing code.
 
 ### 2. Component Library
-
 Pre-built components for common use cases (forms, tables, charts, etc.).
 
 ### 3. Data Binding
-
 Automatic binding between UI components and backend data sources.
 
 ### 4. Workflow Automation
-
 Create workflows to automate repetitive tasks.
 
 ### 5. AI-Powered Suggestions
-
 AI suggests components and code based on user intent.
 
 ### 6. One-Click Deployment
-
 Deploy built applications with a single click.
 
 ### 7. Real-Time Collaboration
-
 Multiple users can collaborate on building applications simultaneously.
 
 ## Development Workflow
@@ -320,20 +309,17 @@ Multiple users can collaborate on building applications simultaneously.
 ## Deployment
 
 ### Development
-
 ```bash
 pnpm dev
 ```
 
 ### Production Build
-
 ```bash
 pnpm build
 pnpm start
 ```
 
 ### Documentation
-
 ```bash
 pnpm run docs:build
 pnpm run docs:serve
@@ -394,21 +380,4 @@ See `contributing.md` for guidelines on contributing to Zarish Sphere.
 
 ---
 
-_Last Updated: 2025-12-07_
-
-## Related Documentation
-
-- [API Reference](api-reference.md)
-- [Database Schema](database-schema.md)
-- [Getting Started with Zarish Sphere](getting-started.md)
-- [Deploying Applications with Zarish Sphere](guides/deploying-apps.md)
-- [Extending Zarish Sphere](guides/extending-platform.md)
-
-## Backlinks
-
-- [API Reference](../api-reference.md)
-- [Database Schema](../database-schema.md)
-- [Getting Started with Zarish Sphere](../getting-started.md)
-- [Deploying Applications with Zarish Sphere](../guides/deploying-apps.md)
-- [Extending Zarish Sphere](../guides/extending-platform.md)
-- [Zarish Sphere Platform](../index.md)
+*Last Updated: 2025-12-07*
