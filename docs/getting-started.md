@@ -17,7 +17,7 @@ Before you begin, ensure you have the following installed:
 
 ```bash
 git clone https://github.com/Zarish-Sphere-Platform/zarish-sphere-monorepo.git
-cd zarish-sphere-ssot
+cd zarish-sphere-monorepo
 ```
 
 ### 2. Install Dependencies
