@@ -151,33 +151,28 @@ Drag the following components:
 ### 3. Configure Components
 
 **Name Input:**
-
 - Label: "Full Name"
 - Placeholder: "Enter your name"
 - Required: Yes
 - Validation: Min 3 characters
 
 **Email Input:**
-
 - Label: "Email Address"
 - Placeholder: "your@email.com"
 - Required: Yes
 - Validation: Valid email format
 
 **Message Text Area:**
-
 - Label: "Message"
 - Placeholder: "Enter your message"
 - Required: Yes
 - Validation: Min 10 characters
 
 **Submit Button:**
-
 - Label: "Send Message"
 - Action: Submit form
 
 **Clear Button:**
-
 - Label: "Clear Form"
 - Action: Reset form
 
@@ -315,10 +310,3 @@ For advanced customization:
 ---
 
 For more help, see the [FAQ](../faq.md) or [Contributing Guidelines](../contributing.md).
-
-## Backlinks
-
-- [Contributing to Zarish Sphere](../contributing.md)
-- [Frequently Asked Questions (FAQ)](../faq.md)
-- [Deploying Applications with Zarish Sphere](../guides/deploying-apps.md)
-- [Zarish Sphere Platform](../index.md)
