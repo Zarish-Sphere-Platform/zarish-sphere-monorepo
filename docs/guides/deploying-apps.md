@@ -6,12 +6,16 @@ This guide explains how to deploy applications built with Zarish Sphere to produ
 
 Zarish Sphere applications can be deployed to multiple platforms:
 
-### Manus Platform (Recommended)
+### Any Platform
+- Cloud Native
+- Self Host
+- Hybrid
+- On - perm
+- Google Workspace
 
 One-click deployment with automatic scaling and monitoring.
 
 **Advantages:**
-
 - No infrastructure setup required
 - Automatic SSL certificates
 - Built-in monitoring and logging
@@ -23,7 +27,6 @@ One-click deployment with automatic scaling and monitoring.
 Deploy using Docker containers for maximum flexibility.
 
 **Advantages:**
-
 - Works on any Docker-compatible platform
 - Full control over environment
 - Easy to integrate with existing systems
@@ -34,7 +37,6 @@ Deploy using Docker containers for maximum flexibility.
 Deploy to any Node.js hosting provider.
 
 **Advantages:**
-
 - Wide variety of providers
 - Familiar deployment process
 - Cost-effective options available
@@ -44,7 +46,6 @@ Deploy to any Node.js hosting provider.
 Deploy to serverless platforms for pay-per-use pricing.
 
 **Advantages:**
-
 - No server management
 - Automatic scaling
 - Pay only for what you use
@@ -155,7 +156,7 @@ CMD ["pnpm", "start"]
 Create a `docker-compose.yml` for local testing:
 
 ```yaml
-version: "3.8"
+version: '3.8'
 
 services:
   app:
@@ -213,13 +214,11 @@ docker push your-registry/zarish-sphere:latest
 Deploy using your container orchestration platform:
 
 **Kubernetes:**
-
 ```bash
 kubectl apply -f deployment.yaml
 ```
 
 **Docker Swarm:**
-
 ```bash
 docker service create --name zarish-sphere your-registry/zarish-sphere:latest
 ```
@@ -338,7 +337,6 @@ curl https://your-domain.com
 ### AWS Lambda
 
 1. **Prepare Application**
-
    ```bash
    pnpm build
    ```
@@ -356,7 +354,6 @@ curl https://your-domain.com
 ### Google Cloud Functions
 
 1. **Prepare Application**
-
    ```bash
    pnpm build
    ```
@@ -446,10 +443,3 @@ curl https://your-domain.com
 ---
 
 For more help, see the [FAQ](../faq.md) or [Architecture Guide](../architecture.md).
-
-## Backlinks
-
-- [Zarish Sphere Architecture](../architecture.md)
-- [Frequently Asked Questions (FAQ)](../faq.md)
-- [Building Applications with Zarish Sphere](../guides/building-apps.md)
-- [Zarish Sphere Platform](../index.md)
