@@ -258,7 +258,6 @@ Happy building! 🚀
 
 ## Backlinks
 
-- [API Reference](../api-reference.md)
 - [Zarish Sphere Architecture](../architecture.md)
 - [Contributing to Zarish Sphere](../contributing.md)
 - [Zarish Sphere Platform](../index.md)
