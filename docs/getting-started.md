@@ -16,7 +16,7 @@ Before you begin, ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Zarish-Sphere-Platform/zarish-sphere-ssot.git
+git clone https://github.com/Zarish-Sphere-Platform/zarish-sphere-monorepo.git
 cd zarish-sphere-ssot
 ```
 
@@ -35,7 +35,6 @@ cp .env.example .env.local
 ```
 
 Update the following variables:
-
 - `DATABASE_URL` - Your database connection string
 - `VITE_APP_ID` - Your OAuth application ID
 - `OAUTH_SERVER_URL` - OAuth server URL
@@ -237,6 +236,7 @@ pnpm check
 - Read the **Architecture Guide** (`architecture.md`) to understand the system design
 - Explore the **API Reference** (`api-reference.md`) for available endpoints
 - Check out **Contributing Guidelines** (`contributing.md`) to contribute to the project
+- Review the **TODO List** (`TODO.md`) to see planned features
 
 ## Getting Help
 
@@ -247,17 +247,12 @@ pnpm check
 
 ## Quick Links
 
-- [GitHub Repository](https://github.com/Zarish-Sphere-Platform/zarish-sphere-ssot)
-- [Architecture Guide](architecture.md)
-- [API Reference](api-reference.md)
-- [Contributing Guidelines](contributing.md)
+- [GitHub Repository](https://github.com/Zarish-Sphere-Platform/zarish-sphere-monorepo)
+- [Architecture Guide](./architecture.md)
+- [API Reference](./api-reference.md)
+- [Contributing Guidelines](./contributing.md)
+- [Project TODO](./TODO.md)
 
 ---
 
 Happy building! 🚀
-
-## Backlinks
-
-- [Zarish Sphere Architecture](../architecture.md)
-- [Contributing to Zarish Sphere](../contributing.md)
-- [Zarish Sphere Platform](../index.md)
