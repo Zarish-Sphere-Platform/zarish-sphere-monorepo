@@ -23,8 +23,8 @@ We are committed to providing a welcoming and inclusive environment for all cont
 
 ```bash
 # Clone the repository
-git clone https://github.com/Zarish-Sphere-Platform/zarish-sphere-ssot.git
-cd zarish-sphere-ssot
+git clone https://github.com/Zarish-Sphere-Platform/zarish-sphere-monorepo.git
+cd zarish-sphere-monorepo
 
 # Install dependencies
 pnpm install
@@ -101,17 +101,17 @@ pnpm test:coverage
 Example:
 
 ```typescript
-import { describe, it, expect } from "vitest";
-import { validateComponent } from "./validator";
+import { describe, it, expect } from 'vitest';
+import { validateComponent } from './validator';
 
-describe("validateComponent", () => {
-  it("should validate a valid component", () => {
-    const component = { type: "button", label: "Click me" };
+describe('validateComponent', () => {
+  it('should validate a valid component', () => {
+    const component = { type: 'button', label: 'Click me' };
     expect(validateComponent(component)).toBe(true);
   });
 
-  it("should reject invalid component type", () => {
-    const component = { type: "invalid", label: "Click me" };
+  it('should reject invalid component type', () => {
+    const component = { type: 'invalid', label: 'Click me' };
     expect(validateComponent(component)).toBe(false);
   });
 });
@@ -222,18 +222,3 @@ By contributing to Zarish Sphere, you agree that your contributions will be lice
 ---
 
 Thank you for contributing to Zarish Sphere! 🚀
-
-## Related Documentation
-
-- [Frequently Asked Questions (FAQ)](faq.md)
-- [Getting Started with Zarish Sphere](getting-started.md)
-- [Building Applications with Zarish Sphere](guides/building-apps.md)
-- [Extending Zarish Sphere](guides/extending-platform.md)
-
-## Backlinks
-
-- [Frequently Asked Questions (FAQ)](../faq.md)
-- [Getting Started with Zarish Sphere](../getting-started.md)
-- [Building Applications with Zarish Sphere](../guides/building-apps.md)
-- [Extending Zarish Sphere](../guides/extending-platform.md)
-- [Zarish Sphere Platform](../index.md)
