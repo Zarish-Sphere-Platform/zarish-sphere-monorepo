@@ -549,6 +549,5 @@ For more information, see the [Architecture Guide](architecture.md).
 
 ## Backlinks
 
-- [Zarish Sphere Architecture](../architecture.md)
 - [Getting Started with Zarish Sphere](../getting-started.md)
 - [Zarish Sphere Platform](../index.md)
