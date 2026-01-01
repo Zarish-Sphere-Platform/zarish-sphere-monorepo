@@ -313,4 +313,5 @@ For more help, see the [FAQ](../faq.md) or [Contributing Guidelines](../contribu
 
 ## Backlinks
 
+- [Deploying Applications with Zarish Sphere](../guides/deploying-apps.md)
 - [Zarish Sphere Platform](../index.md)
